@@ -8,13 +8,14 @@ services:
     restart: unless-stopped
     ipc: none
     read_only: true
-    tmpfs:
-      - /tmp
     privileged: false
     volumes:
+      - /tmp
+      - /var/lib/ohdsi/webapi/tmp
       - ${WEBAPI_CACERTS_FILE}:/tmp/cacerts
       - ${WEBAPI_ADDITIONAL_JDBC_FILE_PATH}:/var/lib/ohdsi/webapi/lib/additional/broadsea_mounted.jar
       - ../webapi/docker-entrypoint.sh:/entrypoint.sh
+      - /home/jc/data:/data
     entrypoint: ["/bin/sh","/entrypoint.sh"]
     secrets:
       - WEBAPI_DATASOURCE_PASSWORD
