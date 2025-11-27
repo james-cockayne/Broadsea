@@ -9,6 +9,7 @@ services:
     ipc: none
     read_only: true
     privileged: false
+    user: root
     volumes:
       - /tmp
       - /var/lib/ohdsi/webapi/tmp
